@@ -1,11 +1,14 @@
 import express from "express";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
+import authRoutes from "./src/routes/authRoutes.js"
+
 dotenv.config();
 
 const app = express();
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+app.use("/api/user",authRoutes)
 
 app.get("/",(req,res)=>{
     res.send("Testing for route")
