@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import authRoutes from "./src/routes/authRoutes.js"
+import DBConnect from "./src/config/db.js"
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.get("/",(req,res)=>{
     res.send("Testing for route")
 })
 const port = process.env.PORT || 3000
-app.listen(port , (req,res)=>{
+app.listen(port , ()=>{
+    DBConnect()
     console.log(`server is listening on port ${port}`)
 })
