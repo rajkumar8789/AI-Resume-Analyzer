@@ -1,9 +1,31 @@
 {
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "AI project",
+  "homepage": "https://github.com/rajkumar8789/AI-Resume-Analyzer#readme",
+  "bugs": {
+    "url": "https://github.com/rajkumar8789/AI-Resume-Analyzer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajkumar8789/AI-Resume-Analyzer.git"
+  },
+  "license": "ISC",
+  "author": "Raj kumar",
+  "type": "module",
+  "main": "Index.js",
+  "scripts": {
+    "dev":"nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "cloudinary": "^2.10.1",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "mongoose": "^9.9.3"
+    "mongoose": "^9.9.3",
+    "multer": "^2.2.0",
+    "multer-storage-cloudinary": "^4.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
