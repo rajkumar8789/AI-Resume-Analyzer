@@ -13,7 +13,9 @@ const generateAiResponce =async (prompt) =>{
 }
 
 const generateAiResponceOnResume = async(resume , jobDescription)=>{
-    const pdfFile =await ai.files.upload(resume)
+    const pdfFile =await ai.files.upload({
+        file:resume.path
+    })
 
     const responce =await ai.models.generateContent({
         model:"gemini-3.6-flash",
