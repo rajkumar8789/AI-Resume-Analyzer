@@ -10,6 +10,7 @@ const app = express();
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use("/api/user",authRoutes)
+app.use("api/ai",aiRoutes)
 
 const port = process.env.PORT || 3000
 app.listen(port , ()=>{
