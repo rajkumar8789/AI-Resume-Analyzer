@@ -6,8 +6,8 @@ import { CloudinaryStorage } from "multer-storage-cloudinary"
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: "myfiles",
-        allolwed_format: ["jpg", "jpeg", "png", "webp"]
+        folder: "myfiles/profile",
+        allowed_formats: ["jpg", "jpeg", "png", "webp"]
     }
 
 })

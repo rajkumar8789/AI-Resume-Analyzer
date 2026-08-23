@@ -1,4 +1,4 @@
-import {generateAiResponce} from "../services/aiServices.js"
+import {generateAiResponce,generateAiResponceOnResume} from "../services/aiServices.js"
 
 
 const testAI = async(req,res)=>{
@@ -7,6 +7,15 @@ const testAI = async(req,res)=>{
     res.json(generatedText)
 }
 
+const resumeUpload = async(req,res) =>{
+    const {resume} = req.file
+    console.log(req.file);
+    
+    const {jobDesrciption} = req.body
+    const generatedText =await generateAiResponceOnResume(resume,jobDesrciption)
+    res.json(generatedText)
+}
 
 
-export  {testAI}
+
+export  {testAI,resumeUpload}

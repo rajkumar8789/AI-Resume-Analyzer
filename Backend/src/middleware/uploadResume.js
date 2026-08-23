@@ -6,11 +6,11 @@ import multer from "multer";
 const storage =new CloudinaryStorage({
     cloudinary:cloudinary,
     params:{
-        folder:"myFiles",
-        allowed_files:["pdf"]
+        folder:"myfiles/resumes",
+        allowed_formats:["pdf"]
     }
 })
 
-const resumeUpload = multer({storage:storage})
+const uploadResume = multer({storage:storage})
 
-export default resumeUpload
+export default uploadResume
