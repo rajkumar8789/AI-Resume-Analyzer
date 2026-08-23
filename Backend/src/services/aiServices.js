@@ -6,7 +6,7 @@ const ai = new GoogleGenAI({
 
 const generateAiResponce =async (prompt) =>{
    const responce = await ai.models.generateContent({
-    model:"gemini-3.7-flash",
+    model:"gemini-3.6-flash",
     contents:prompt
     })
     return responce.text

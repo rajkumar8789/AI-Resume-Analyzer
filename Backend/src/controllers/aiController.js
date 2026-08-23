@@ -1,8 +1,3 @@
-// const responce =await ai.models.generateContent({
-//     model:"gemini-3.7-flash",
-//     contents:prompt
-// })
-
 import {generateAiResponce} from "../services/aiServices.js"
 
 
