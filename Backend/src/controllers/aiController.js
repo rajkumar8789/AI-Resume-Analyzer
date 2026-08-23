@@ -9,7 +9,7 @@ const testAI = async(req,res)=>{
 
 const resumeUpload = async(req,res) =>{
     const {resume} = req.file
-    console.log(req.file);
+    console.log(JSON.stringify(req.file, null, 2));
     
     const {jobDesrciption} = req.body
     const generatedText =await generateAiResponceOnResume(resume,jobDesrciption)
