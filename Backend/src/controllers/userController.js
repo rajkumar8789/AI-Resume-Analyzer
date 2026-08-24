@@ -40,7 +40,7 @@ const userRegister = async (req, res) => {
     })
 
 }
-
+//login controller
 const userLogin =async(req,res)=>{
 
     const {email,password} = req.body
