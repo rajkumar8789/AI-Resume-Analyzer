@@ -1,6 +1,7 @@
 import User from "../models/userSchema.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+
 // resister controller
 const userRegister = async (req, res) => {
     const { name, email, password } = req.body
@@ -40,6 +41,7 @@ const userRegister = async (req, res) => {
     })
 
 }
+
 //login controller
 const userLogin =async(req,res)=>{
 
