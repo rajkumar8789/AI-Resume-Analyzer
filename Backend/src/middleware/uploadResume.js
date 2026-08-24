@@ -1,6 +1,5 @@
 // uploading resume (pdf) through this
-// import cloudinary from "../config/cloudinary.js";
-// import { CloudinaryStorage } from "multer-storage-cloudinary";
+
 import multer from "multer";
 
 const storage = multer.diskStorage({
@@ -8,7 +7,6 @@ const storage = multer.diskStorage({
     cb(null, 'uploads/resumes')
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
     cb(null, file.originalname)
   }
 })
