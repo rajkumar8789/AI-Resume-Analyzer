@@ -12,7 +12,7 @@ const DBConnect=async()=>{
         throw new Error("mongo uri is required")
     }
    const conn=await mongoose.connect(uri)
-   console.log("mongoDB connected successfully",conn.connection.host);
+   console.log(" ✅ mongoDB connected successfully",conn.connection.host);
    
 
 }

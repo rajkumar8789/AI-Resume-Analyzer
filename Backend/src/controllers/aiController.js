@@ -12,7 +12,7 @@ const testAI = async (req, res) => {
 const resumeUpload = async (req, res) => {
   try {
     //  const {resume} = req.file.path
-    const { jobDesrciption } = req.body;
+    const { jobDescription } = req.body;
     console.log("FILE:");
     console.dir(req.file, { depth: null });
 
@@ -21,7 +21,7 @@ const resumeUpload = async (req, res) => {
 
     const generatedText = await generateAiResponceOnResume(
       req.file,
-      jobDesrciption,
+      jobDescription,
     );
     res.json(generatedText);
   } catch (err) {
