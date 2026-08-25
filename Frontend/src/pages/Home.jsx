@@ -1,6 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Home = () => {
+  const [resume , setResume] =useState(null)
+  const [jobDescription,setJobDescription] = useState("")
+  const [result,setResult ]= useState(null)
+  const [loading , setLoading] = useState(true)
+
+
+
   return ( 
     <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center px-4 py-10">
       <div className="w-full max-w-2xl">
