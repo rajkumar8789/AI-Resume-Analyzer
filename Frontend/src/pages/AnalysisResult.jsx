@@ -1,6 +1,10 @@
 import React from 'react'
-
-const AnalysisResult = ({result}) => {
+import {useNavigate} from 'react-router-dom'
+const AnalysisResult = () => {
+  const navigate = useNavigate()
+  navigate("/analyzed-result", {
+    state: { result: data }
+})
   return (<>
   
     <div>AnalysisResult</div>

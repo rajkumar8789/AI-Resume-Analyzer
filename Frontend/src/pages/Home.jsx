@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Home = () => {
+const Home = ({result}) => {
   const [resume, setResume] = useState(null);
   const [jobDescription, setJobDescription] = useState("");
   const [result, setResult] = useState(null);
