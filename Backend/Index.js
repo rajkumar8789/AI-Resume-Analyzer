@@ -3,11 +3,11 @@ import dotenv from "dotenv";
 import authRoutes from "./src/routes/authRoutes.js"
 import DBConnect from "./src/config/db.js"
 import aiRoutes from "./src/routes/aiRoutes.js"
-
+import cors from 'cors'
 dotenv.config();
 
 const app = express();
-
+app.use(cors())
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use("/api/user",authRoutes)

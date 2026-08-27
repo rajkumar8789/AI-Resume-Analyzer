@@ -1,10 +1,10 @@
 import React from 'react'
 import {useNavigate} from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 const AnalysisResult = () => {
-  const navigate = useNavigate()
-  navigate("/analyzed-result", {
-    state: { result: data }
-})
+ const location = useLocation()
+      
+const result =location.state
   return (<>
   
     <div>AnalysisResult</div>

@@ -1,38 +1,55 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+const Home = () => {
+  const navigate = useNavigate();
 
-const Home = ({result}) => {
   const [resume, setResume] = useState(null);
   const [jobDescription, setJobDescription] = useState("");
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      
       const formData = new FormData();
 
-      formData.append('resume',resume);
-      formData.append('jobDescription',jobDescription)
+      formData.append("resume", resume);
+      formData.append("jobDescription", jobDescription);
 
-      const response = await fetch("http://localhost:5000/api/ai/analyze",
-       { 
-        method:"POST",
-        body:formData
-       })
-       const data =await response.json();
-       console.log(data.generatedText)
+      if (!resume) {
+        console.log("Please select a resume");
+        return;
+      }
 
-       setResult(data)
+      if (!jobDescription.trim()) {
+        console.log("Please enter job description");
+        return;
+      }
+
+      console.log("Error Occured before fetch");
+
+      const response = await fetch("http://localhost:5000/api/ai/analyze", {
+        method: "POST",
+        body: formData,
+      });
+      console.log("Error Occured after fetch");
+      const data = await response.json();
+      console.log(data);
+
+      setResult(data);
+
+      navigate("/analyzed-result", {
+        state: { result: data },
+      });
     } catch (error) {
       console.log(error.message || "Error Occured");
-    }finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
   if (loading) {
-    return <p>Loading ... .. .</p>
+    return <p>Loading ... .. .</p>;
   }
   return (
     <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center px-4 py-10">
@@ -95,7 +112,7 @@ const Home = ({result}) => {
               placeholder="Paste the job description here..."
               className="w-full resize-none rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
               value={jobDescription}
-              onChange={(e)=> setJobDescription(e.target.value)}
+              onChange={(e) => setJobDescription(e.target.value)}
             />
           </div>
 
