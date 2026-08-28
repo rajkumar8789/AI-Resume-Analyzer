@@ -2,7 +2,9 @@ import { useLocation } from "react-router-dom";
 const AnalysisResult = () => {
   const location = useLocation();
 
+  //used to access the content of result state
   const result = location.state.result;
+  
   return (
     <div className="min-h-screen bg-slate-950 px-4 py-10 text-white">
       <div className="mx-auto max-w-6xl">

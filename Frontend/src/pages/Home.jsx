@@ -12,6 +12,7 @@ const Home = () => {
     e.preventDefault();
     setLoading(true);
     try {
+      //used to send multiPart Form data(means input text,files)
       const formData = new FormData();
 
       formData.append("resume", resume);
