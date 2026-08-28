@@ -10,6 +10,7 @@ const Home = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const formData = new FormData();
 
@@ -30,7 +31,7 @@ const Home = () => {
         method: "POST",
         body: formData,
       });
-      
+
       const data = await response.json();
       console.log(data);
 
@@ -117,10 +118,11 @@ const Home = () => {
           {/* Analyze Button */}
           <button
             type="button"
+            disabled={loading}
             className="w-full rounded-xl bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 px-5 py-3 font-semibold transition"
             onClick={handleSubmit}
           >
-            Analyze Resume
+            {loading ? "Analyzing Resume .....":"Analyze Resume"}
           </button>
         </div>
       </div>
