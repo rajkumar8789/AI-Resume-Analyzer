@@ -48,8 +48,22 @@ const Home = () => {
   };
 
   if (loading) {
-    return <p>Loading ... .. .</p>;
-  }
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-slate-950">
+      <div className="text-center">
+        <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-slate-700 border-t-indigo-500"></div>
+
+        <h2 className="mt-5 text-xl font-semibold text-white">
+          Analyzing Your Resume
+        </h2>
+
+        <p className="mt-2 text-sm text-slate-400">
+          AI is comparing your resume with the job description...
+        </p>
+      </div>
+    </div>
+  );
+}
   return (
     <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center px-4 py-10">
       <div className="w-full max-w-2xl">
