@@ -1,14 +1,12 @@
-import React from 'react'
-import {useNavigate} from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 const AnalysisResult = () => {
  const location = useLocation()
       
-const result =location.state
+const result =location.state.result
   return (<>
   
-    <div>AnalysisResult</div>
-    <p>{result.matchedSkills}</p>
+    <h2>AnalysisResult</h2>
+    <p>{result.matchScore}</p>
   
   </>)
 }

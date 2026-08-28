@@ -26,13 +26,11 @@ const Home = () => {
         return;
       }
 
-      console.log("Error Occured before fetch");
-
       const response = await fetch("http://localhost:5000/api/ai/analyze", {
         method: "POST",
         body: formData,
       });
-      console.log("Error Occured after fetch");
+      
       const data = await response.json();
       console.log(data);
 
