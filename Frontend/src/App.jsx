@@ -3,11 +3,13 @@ import './App.css'
 import Home from './pages/Home.jsx'
 import AnalysisResult from './pages/AnalysisResult.jsx'
 import HomePage from './pages/HomePage.jsx'
+import Navbar from './components/Navbar.jsx'
 function App() {
  
 
   return (
     <>
+    <Navbar/>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<HomePage/>}/>
