@@ -25,7 +25,6 @@ The application uses **Google Gemini AI** to understand the resume and job requi
 
 ## 🧠 How It Works
 
-```text
 User
  │
  ├── Upload Resume (PDF)
