@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 const Navbar = () => {
   return (
     <nav className="w-full border-b border-slate-800 bg-slate-950">
