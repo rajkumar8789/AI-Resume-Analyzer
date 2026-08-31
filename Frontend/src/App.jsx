@@ -12,6 +12,7 @@ function App() {
     <Navbar/>
       <BrowserRouter>
         <Routes>
+          <Route path='/login' element={}/>
           <Route path='/' element={<HomePage/>}/>
           <Route path="/analyze-resume" element={<Home/>}/>
           <Route path="/analyzed-result" element={<AnalysisResult />}/>
