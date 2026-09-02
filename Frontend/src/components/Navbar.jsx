@@ -5,16 +5,12 @@ const Navbar = () => {
     <nav className="w-full border-b border-slate-800 bg-slate-950">
       <div className="mx-auto flex max-w-6xl items-center justify-between p-4">
         
-        <h1 className="text-xl font-bold text-white cursor-default">
-          ResumeAI
-        </h1>
-
-        <div className="flex items-center gap-6">
-            <Link to="/" className="text-xl font-bold text-white">
+         <Link to="/" className="text-xl font-bold text-white">
       ResumeAI
           </Link>
 
-    
+        <div className="flex items-center gap-6">
+     
       <Link
         to="/login"
         className="rounded-lg px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white"

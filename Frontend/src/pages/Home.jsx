@@ -134,7 +134,7 @@ const Home = () => {
           <button
             type="button"
             disabled={loading}
-            className="w-full rounded-xl bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 px-5 py-3 font-semibold transition"
+            className="w-full rounded-xl bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 px-5 py-3 font-semibold transition cursor-pointer"
             onClick={handleSubmit}
           >
             {loading ? "Analyzing Resume .....":"Analyze Resume"}

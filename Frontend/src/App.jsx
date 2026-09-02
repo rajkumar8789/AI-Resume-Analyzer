@@ -11,8 +11,8 @@ function App() {
 
   return (
     <>
-    <Navbar/>
-      <BrowserRouter>
+   <BrowserRouter>
+     <Navbar/>
         <Routes>
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
