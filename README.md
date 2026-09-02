@@ -1,4 +1,4 @@
-# 🤖 AI Resume Analyzer
+# AI Resume Analyzer
 
 An AI-powered Resume Analyzer that compares a candidate's resume with a given job description and provides an intelligent compatibility analysis.
 
@@ -23,7 +23,7 @@ The application uses **Google Gemini AI** to understand the resume and job requi
 
 ---
 
-## 🧠 How It Works
+## How It Works
 
 User
  │
