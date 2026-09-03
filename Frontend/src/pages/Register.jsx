@@ -9,8 +9,6 @@ const Login = () => {
   });
 
   const handleChange = (e) => {
-    const { name, email, password } = e.target;
-
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -26,10 +24,10 @@ const Login = () => {
           headers:{
             "Content-Type":"application/json"
           },
-          body:JSON.stringify(for)
+          body:JSON.stringify(formData)
         },
       );
-      console.log(response);
+      console.log(response.data);
       navigate("/login");
     } catch (error) {
       console.log(error.message);

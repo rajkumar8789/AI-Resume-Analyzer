@@ -16,8 +16,25 @@ const Login = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/user/login");
-    console.log(response);
+    try {
+      const response = await fetch("http://localhost:5000/api/user/login",
+        {
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify(formData)
+        }
+      );
+      const data =await response.json()
+
+
+      console.log(response.status);
+      console.log("data",data);
+      
+    } catch (error) {
+      console.log(error.message)
+    }
   };
   return (
     <div className="">

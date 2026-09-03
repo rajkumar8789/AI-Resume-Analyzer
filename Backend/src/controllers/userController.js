@@ -45,43 +45,48 @@ const userRegister = async (req, res) => {
 //login controller
 const userLogin =async(req,res)=>{
 
-    const {email,password} = req.body
-
-    if (!email || !password) {
-        return res.status(400).json({
-            message:"email and password is required"
-        })
-    }
-
-    const user =await User.find({email})
-
-    if (!user) {
-        return res.status(400).json({
-            message:"user not exists"
-        })
-    }
-
-    const isMatch = await bcrypt.compare(password, user.password);
-
-    if (!isMatch) {
-      return res.status(400).json({ message: "Invalid credentials" });
-    }
-
-    const token = jwt.sign(
-        {userId:user._id},
-        process.env.JWT_SECRET_KEY,
-        {expiresIn:"7d"}
-    )
-
-    res.status(200).json({
-        message:"successfully LoggedIn",
-        token,
-        user:{
-            name:user.name,
-            email:user.email
+    try {
+        const {email,password} = req.body
+    
+        if (!email || !password) {
+            return res.status(400).json({
+                message:"email and password is required"
+            })
         }
-
-    })
+    
+        const user =await User.findOne({email})
+    
+        if (!user) {
+            return res.status(400).json({
+                message:"user not exists"
+            })
+        }
+    
+        const isMatch = await bcrypt.compare(password, user.password);
+    
+        if (!isMatch) {
+          return res.status(400).json({ message: "Invalid credentials" });
+        }
+    
+        const token = jwt.sign(
+            {userId:user._id},
+            process.env.JWT_SECRET_KEY,
+            {expiresIn:"7d"}
+        )
+    
+        res.status(200).json({
+            message:"successfully LoggedIn",
+            token,
+            user:{
+                name:user.name,
+                email:user.email
+            }
+    
+        })
+    } catch (error) {
+        console.log(error);
+        
+    }
 }
 
 export {userRegister,userLogin}
