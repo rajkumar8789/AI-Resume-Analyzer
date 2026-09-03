@@ -27,7 +27,9 @@ const Login = () => {
           body:JSON.stringify(formData)
         },
       );
-      console.log(response.data);
+      const data = await response.json()
+      console.log(data);
+      
       navigate("/login");
     } catch (error) {
       console.log(error.message);

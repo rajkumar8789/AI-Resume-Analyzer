@@ -1,14 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({setIsLoggedIn}) => {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
   const handleChange = (e) => {
-    const { email, password } = e.target;
-
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -28,10 +28,15 @@ const Login = () => {
       );
       const data =await response.json()
 
-
       console.log(response.status);
       console.log("data",data);
-      
+
+      //Login  Functionality
+      const token = data.token
+      localStorage.setItem('token',token)
+      setIsLoggedIn(true)
+
+      navigate('/')
     } catch (error) {
       console.log(error.message)
     }
@@ -75,6 +80,8 @@ const Login = () => {
           >
             Login
           </button>
+
+
         </div>
       </form>
     </div>

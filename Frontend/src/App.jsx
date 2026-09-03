@@ -6,15 +6,21 @@ import HomePage from './pages/HomePage.jsx'
 import Navbar from './components/Navbar.jsx'
 import Register from './pages/Register.jsx'
 import Login from './pages/Login.jsx'
+import { useState } from 'react'
 function App() {
- 
+ const [isLoggedIn , setIsLoggedIn] = useState(!!localStorage.getItem('token'))
 
   return (
     <>
    <BrowserRouter>
-     <Navbar/>
+     <Navbar
+     isLoggedIn={isLoggedIn}
+     setIsLoggedIn={setIsLoggedIn}
+     />
         <Routes>
-          <Route path='/login' element={<Login/>}/>
+          <Route path='/login' element={
+            <Login setIsLoggedIn={setIsLoggedIn}/>
+            }/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/' element={<HomePage/>}/>
           <Route path="/analyze-resume" element={<Home/>}/>
