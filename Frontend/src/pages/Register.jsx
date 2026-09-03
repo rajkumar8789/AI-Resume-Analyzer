@@ -1,31 +1,47 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name:"",
+    name: "",
     email: "",
     password: "",
   });
 
   const handleChange = (e) => {
-    const { name,email, password} = e.target;
+    const { name, email, password } = e.target;
 
     setFormData({
       ...formData,
-      [e.target.name]: [e.target.value],
+      [e.target.name]: e.target.value,
     });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/user/register");
-    console.log(response);
-    navigate("/login")
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/user/register",
+        {
+          method:'POST',
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify(for)
+        },
+      );
+      console.log(response);
+      navigate("/login");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
   return (
     <div className="">
       <h2 className="text-center font-bold text-4xl">Register Page</h2>
-      <form className="flex max-w-md mx-auto p-6 bg-white rounded-lg shadow-md space-y-4">
+      <form
+        onSubmit={handleSubmit}
+        className="flex max-w-md mx-auto p-6 bg-white rounded-lg shadow-md space-y-4"
+      >
         <div className="flex flex-wrap">
           <label
             htmlFor="email"
@@ -36,6 +52,7 @@ const Login = () => {
           <input
             type="text"
             name="name"
+            value={formData.name}
             onChange={handleChange}
             id=""
             className="w-full px-4 py-3 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 bg-slate-200"
@@ -49,6 +66,7 @@ const Login = () => {
           <input
             type="email"
             name="email"
+            value={formData.email}
             onChange={handleChange}
             id=""
             className="w-full px-4 py-3 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 bg-slate-200"
@@ -61,14 +79,14 @@ const Login = () => {
           </label>
           <input
             type="password"
-            name=""
+            name="password"
+            value={formData.password}
             onChange={handleChange}
             id=""
             className="w-full px-4 py-3 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 bg-slate-200"
           />
           <button
             type="submit"
-            onChange={handleSubmit}
             className="bg-amber-100 p-4 mt-3 ml-30 rounded-xl hover:bg-amber-200 text-xl font-bold cursor-pointer"
           >
             Register
