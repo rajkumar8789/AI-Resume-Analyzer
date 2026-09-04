@@ -10,6 +10,8 @@ const Login = () => {
 
   const handleChange = (e) => {
     setFormData({
+
+      // ... is spread operator that spread form data
       ...formData,
       [e.target.name]: e.target.value,
     });
