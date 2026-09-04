@@ -18,12 +18,17 @@ function App() {
      setIsLoggedIn={setIsLoggedIn}
      />
         <Routes>
+
+          <Route path='/' element={<HomePage/>}/>
+
+          <Route path='/register' element={<Register/>}/>
+          
           <Route path='/login' element={
             <Login setIsLoggedIn={setIsLoggedIn}/>
             }/>
-          <Route path='/register' element={<Register/>}/>
-          <Route path='/' element={<HomePage/>}/>
+          
           <Route path="/analyze-resume" element={<Home/>}/>
+          
           <Route path="/analyzed-result" element={<AnalysisResult />}/>
         </Routes>
       </BrowserRouter>
