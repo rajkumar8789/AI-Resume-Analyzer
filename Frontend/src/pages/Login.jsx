@@ -31,7 +31,7 @@ const Login = ({setIsLoggedIn}) => {
       console.log(response.status);
       console.log("data",data);
 
-      //Login  Functionality
+      //Taking token forom beckend for Login  Functionality
       const token = data.token
       localStorage.setItem('token',token)
       setIsLoggedIn(true)
