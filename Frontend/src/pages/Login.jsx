@@ -36,7 +36,7 @@ const Login = ({setIsLoggedIn}) => {
       localStorage.setItem('token',token)
       setIsLoggedIn(true)
 
-      navigate('/')
+      navigate('/analyze-resume')
     } catch (error) {
       console.log(error.message)
     }

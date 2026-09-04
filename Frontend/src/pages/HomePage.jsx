@@ -19,7 +19,7 @@ const HomePage = () => {
           </p>
 
           <a
-            href="/analyze-resume "
+            href="/login "
             className="text-md font-medium text-blue-500 block text-center pt-2"
           >
             Start analyzing today...
