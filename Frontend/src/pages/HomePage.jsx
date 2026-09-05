@@ -1,6 +1,6 @@
 import React from "react";
 
-const HomePage = () => {
+const HomePage = ({isLoggedIn}) => {
   return (
     <div
       className="min-h-screen bg-cover bg-center bg-no-repeat"
@@ -18,12 +18,18 @@ const HomePage = () => {
             Upload your resume and compare it with a job description using AI.
           </p>
 
-          <a
+          {!isLoggedIn?(<a
             href="/login "
             className="text-md font-medium text-blue-500 block text-center pt-2"
           >
             Start analyzing today...
-          </a>
+          </a>):
+          (<a
+            href="/analyze-resume "
+            className="text-md font-medium text-blue-500 block text-center pt-2"
+          >
+            Start analyzing today...
+          </a>)}
         </div>
       </div>
     </div>
