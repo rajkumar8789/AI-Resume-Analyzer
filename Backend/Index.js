@@ -12,6 +12,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use("/api/user",authRoutes)
 app.use("/api/ai",aiRoutes)
+app.use("/api/resume")
 
 const port = process.env.PORT || 3000
 app.listen(port , ()=>{
