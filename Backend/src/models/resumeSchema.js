@@ -1,53 +1,77 @@
 import mongoose from "mongoose";
 import User from "./userSchema";
 const resumeSchema = new mongoose.Schema({
-  personal: {
-    fullName: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-    },
-    phone: {
-      type: Number,
-    },
-    location: {
-      type: String,
-    },
+  user:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'User',
+    required:true
+  },
+  
+  fullName: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  phone: {
+    type: Number,
+  },
+  location: {
+    type: String,
   },
 
   //professionalSummary
   summary: {
     type: String,
-    required: true,
   },
 
   //Education
-  education: [
-    {
-      degree: {
-        type: String,
-        required: true,
+  education: {
+    type: [
+      {
+        degree: {
+          type: String,
+        },
+        college: {
+          type: String,
+        },
+        startYear: {
+          type: String,
+        },
+        endYear: {
+          type: String,
+        },
       },
-      college: {
-        type: String,
-        required: true,
+    ],
+  },
+  skills: {
+    type: [String],
+  },
+  experience: {
+    type: [
+      {
+        company: String,
+        position: String,
+        startDate: String,
+        endDate: String,
+        description: String,
       },
-      startYear: {
-        type: Date,
-        required: true,
+    ],
+  },
+  projects: {
+    type: [
+      {
+        name: String,
+        description: String,
+        technologies: [String],
+        link: String,
       },
-      endYear: {
-        type: Date,
-        required: true,
-      },
-    },
-  ],
-  skills: [],
-  experience: [],
-  projects: [],
+    ],
+  },
+},{
+  timestamps:true
 });
 
 const Resume = mongoose.model("Analysis", resumeSchema);
