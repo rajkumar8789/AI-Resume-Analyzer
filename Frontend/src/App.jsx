@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
 import { useState } from "react";
+import CreateResume from "./pages/CreateResume.jsx";
 function App() {
   //Here !! indicates true or false based on token
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
@@ -17,6 +18,8 @@ function App() {
         <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <Routes>
           <Route path="/" element={<HomePage isLoggedIn={isLoggedIn}/>} />
+
+          <Route path="/create" element={<CreateResume/>}/>
 
           <Route path="/register" element={<Register />} />
 

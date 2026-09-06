@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import authRoutes from "./src/routes/authRoutes.js"
 import DBConnect from "./src/config/db.js"
 import aiRoutes from "./src/routes/aiRoutes.js"
+import resumeRoutes from "./src/routes/resumeRoutes.js"
 import cors from 'cors'
 dotenv.config();
 
@@ -12,7 +13,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use("/api/user",authRoutes)
 app.use("/api/ai",aiRoutes)
-app.use("/api/resume")
+app.use("/api/resume",resumeRoutes)
 
 const port = process.env.PORT || 3000
 app.listen(port , ()=>{

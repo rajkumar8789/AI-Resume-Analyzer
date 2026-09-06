@@ -21,7 +21,12 @@ const resumeSchema = new mongoose.Schema({
   location: {
     type: String,
   },
-
+  linkedIn:{
+    type: String,
+  },
+  github:{
+    type: String,
+  },
   //professionalSummary
   summary: {
     type: String,
