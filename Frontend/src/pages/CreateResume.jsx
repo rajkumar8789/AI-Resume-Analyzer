@@ -46,7 +46,7 @@ const CreateResume = () => {
       // 1st Skills -> From Schema , 2nd Skills -> from useState
       skills: [...resume.skills, skill.trim()],
     });
-    setSkills("");
+    setSkill("");
   };
 
   const addEducation = () => {
@@ -112,11 +112,15 @@ const CreateResume = () => {
           method:POST,
           headers:{
             "Content-Type":"application/json"
-          }
+          },
+          body:JSON.stringify()
         }
       )
-
+      const data =await responce.json()
+      console.log(data);
+      
     } catch (error) {
+      console.log(error.message);
       
     }
   }
@@ -147,7 +151,8 @@ const CreateResume = () => {
 
                 <input
                   type="text"
-                  value={resume.name}
+                  name="fullName"
+                  value={resume.fullName}
                   onChange={handleChange}
                   placeholder="Enter your full name"
                   className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-indigo-500"
@@ -162,6 +167,7 @@ const CreateResume = () => {
 
                 <input
                   type="email"
+                  name="email"
                   value={resume.email}
                   onChange={handleChange}
                   placeholder="example@gmail.com"
@@ -176,7 +182,8 @@ const CreateResume = () => {
                 </label>
 
                 <input
-                  type="text"
+                  type="number"
+                  name="phone"
                   value={resume.phone}
                   onChange={handleChange}
                   placeholder="+91 9876543210"
@@ -192,6 +199,7 @@ const CreateResume = () => {
 
                 <input
                   type="text"
+                  name="location"
                   value={resume.location}
                   onChange={handleChange}
                   placeholder="City, State"
@@ -207,6 +215,7 @@ const CreateResume = () => {
 
                 <input
                   type="text"
+                  name="linkedIn"
                   value={resume.linkedIn}
                   onChange={handleChange}
                   placeholder="https://linkedin.com/in/yourname"
@@ -222,6 +231,7 @@ const CreateResume = () => {
 
                 <input
                   type="text"
+                  name="github"
                   value={resume.github}
                   onChange={handleChange}
                   placeholder="https://github.com/yourname"
@@ -237,6 +247,7 @@ const CreateResume = () => {
 
                 <textarea
                   rows="5"
+                  name="summary"
                   value={resume.summary}
                   onChange={handleChange}
                   placeholder="Write a short professional summary..."
@@ -307,6 +318,7 @@ const CreateResume = () => {
                 <div className="grid gap-4 sm:grid-cols-2">
                   <input
                     type="text"
+                    name="degree"
                     value={education.degree}
                     onChange={(e)=> setEducation(e.target.value)}
                     placeholder="Degree"
@@ -315,6 +327,7 @@ const CreateResume = () => {
 
                   <input
                     type="text"
+                    name="college"
                     value={education.college}
                     onChange={(e)=> setEducation(e.target.value)}
                     placeholder="College / University"
@@ -323,6 +336,7 @@ const CreateResume = () => {
 
                   <input
                     type="text"
+                    name="startYear"
                     value={education.startYear}
                     onChange={(e)=> setEducation(e.target.value)}
                     placeholder="Start Year"
@@ -331,6 +345,7 @@ const CreateResume = () => {
 
                   <input
                     type="text"
+                    name="endYear"
                     value={education.endYear}
                     onChange={(e)=> setEducation(e.target.value)}
                     placeholder="End Year"
@@ -358,6 +373,7 @@ const CreateResume = () => {
                 <div className="space-y-4">
                   <input
                     type="text"
+                    name="company"
                     value={experience.company}
                     onChange={(e)=> setExperience(e.target.value)}
                     placeholder="Company Name"
@@ -366,6 +382,7 @@ const CreateResume = () => {
 
                   <input
                     type="text"
+                    name="position"
                     value={experience.position}
                     onChange={(e)=> setExperience(e.target.value)}
                     placeholder="Job Position"
@@ -375,6 +392,7 @@ const CreateResume = () => {
                   <div className="grid gap-4 sm:grid-cols-2">
                     <input
                       type="text"
+                      name="startDate"
                       value={experience.startDate}
                       onChange={(e)=> setExperience(e.target.value)}
                       placeholder="Start Date"
@@ -383,6 +401,7 @@ const CreateResume = () => {
 
                     <input
                       type="text"
+                      name="endDate"
                       value={experience.endDate}
                       onChange={(e)=> setExperience(e.target.value)}
                       placeholder="End Date"
@@ -392,6 +411,7 @@ const CreateResume = () => {
 
                   <textarea
                     rows="4"
+                    name="description"
                     value={experience.description}
                     onChange={(e)=> setExperience(e.target.value)}
                     placeholder="Describe your responsibilities and achievements..."
@@ -419,6 +439,7 @@ const CreateResume = () => {
                 <div className="space-y-4">
                   <input
                     type="text"
+                    name="name"
                     value={projects.name}
                     onChange={(e)=> setProjects(e.target.value)}
                     placeholder="Project Name"
@@ -427,6 +448,7 @@ const CreateResume = () => {
 
                   <input
                     type="text"
+                    name="link"
                     value={projects.link}
                     onChange={(e)=> setProjects(e.target.value)}
                     placeholder="Project Link"
@@ -532,7 +554,7 @@ const CreateResume = () => {
                     <div>
                       <h4 className="font-semibold">{experience.position}</h4>
 
-                      <p className="text-sm text-slate-600">{experience.company}e</p>
+                      <p className="text-sm text-slate-600">{experience.company}</p>
                     </div>
 
                     <span className="text-xs text-slate-500">
