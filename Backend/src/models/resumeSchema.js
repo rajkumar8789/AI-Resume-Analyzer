@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import User from "./userSchema";
+import User from "./userSchema.js";
 const resumeSchema = new mongoose.Schema({
   user:{
     type:mongoose.Schema.Types.ObjectId,

@@ -106,14 +106,15 @@ const CreateResume = () => {
 
   const handleSubmit =async()=>{
     try {
-      
+      const token = localStorage.getItem('token')
       const responce = await fetch("http://localhost:5000/api/resume/create",
         {
-          method:POST,
+          method:"POST",
           headers:{
-            "Content-Type":"application/json"
+            "Content-Type":"application/json",
+            Authorization:`bearer ${token}`
           },
-          body:JSON.stringify()
+          body:JSON.stringify(resume)
         }
       )
       const data =await responce.json()
@@ -277,7 +278,7 @@ const CreateResume = () => {
 
                 <button
                   type="button"
-                  onSubmit={addSkills}
+                  onClick={addSkills}
                   className="rounded-lg bg-indigo-600 px-5 py-3 font-semibold transition hover:bg-indigo-500"
                 >
                   Add
@@ -307,7 +308,7 @@ const CreateResume = () => {
 
                 <button
                   type="button"
-                  onSubmit={addEducation}
+                  onClick={addEducation}
                   className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium hover:bg-indigo-500"
                 >
                   + Add Education
@@ -320,7 +321,10 @@ const CreateResume = () => {
                     type="text"
                     name="degree"
                     value={education.degree}
-                    onChange={(e)=> setEducation(e.target.value)}
+                    onChange={(e)=> setEducation({
+                      ...education,
+                      [e.target.name]:e.target.value
+                    })}
                     placeholder="Degree"
                     className="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
@@ -329,7 +333,10 @@ const CreateResume = () => {
                     type="text"
                     name="college"
                     value={education.college}
-                    onChange={(e)=> setEducation(e.target.value)}
+                    onChange={(e)=> setEducation({
+                      ...education,
+                      [e.target.name]:e.target.value
+                    })}
                     placeholder="College / University"
                     className="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
@@ -338,7 +345,10 @@ const CreateResume = () => {
                     type="text"
                     name="startYear"
                     value={education.startYear}
-                    onChange={(e)=> setEducation(e.target.value)}
+                    onChange={(e)=> setEducation({
+                      ...education,
+                      [e.target.name]:e.target.value
+                    })}
                     placeholder="Start Year"
                     className="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
@@ -347,7 +357,10 @@ const CreateResume = () => {
                     type="text"
                     name="endYear"
                     value={education.endYear}
-                    onChange={(e)=> setEducation(e.target.value)}
+                    onChange={(e)=> setEducation({
+                      ...education,
+                      [e.target.name]:e.target.value
+                    })}
                     placeholder="End Year"
                     className="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
@@ -362,7 +375,7 @@ const CreateResume = () => {
 
                 <button
                   type="button"
-                  onSubmit={addExperience}
+                  onClick={addExperience}
                   className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium hover:bg-indigo-500"
                 >
                   + Add Experience
@@ -375,7 +388,10 @@ const CreateResume = () => {
                     type="text"
                     name="company"
                     value={experience.company}
-                    onChange={(e)=> setExperience(e.target.value)}
+                    onChange={(e)=> setExperience({
+                      ...experience,
+                      [e.target.name]:e.target.value
+                    })}
                     placeholder="Company Name"
                     className="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
@@ -384,7 +400,10 @@ const CreateResume = () => {
                     type="text"
                     name="position"
                     value={experience.position}
-                    onChange={(e)=> setExperience(e.target.value)}
+                    onChange={(e)=> setExperience({
+                      ...experience,
+                      [e.target.name]:e.target.value
+                    })}
                     placeholder="Job Position"
                     className="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
@@ -394,7 +413,10 @@ const CreateResume = () => {
                       type="text"
                       name="startDate"
                       value={experience.startDate}
-                      onChange={(e)=> setExperience(e.target.value)}
+                      onChange={(e)=> setExperience({
+                      ...experience,
+                      [e.target.name]:e.target.value
+                    })}
                       placeholder="Start Date"
                       className="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                     />
@@ -403,7 +425,10 @@ const CreateResume = () => {
                       type="text"
                       name="endDate"
                       value={experience.endDate}
-                      onChange={(e)=> setExperience(e.target.value)}
+                      onChange={(e)=> setExperience({
+                      ...experience,
+                      [e.target.name]:e.target.value
+                    })}
                       placeholder="End Date"
                       className="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                     />
@@ -413,7 +438,10 @@ const CreateResume = () => {
                     rows="4"
                     name="description"
                     value={experience.description}
-                    onChange={(e)=> setExperience(e.target.value)}
+                    onChange={(e)=> setExperience({
+                      ...experience,
+                      [e.target.name]:e.target.value
+                    })}
                     placeholder="Describe your responsibilities and achievements..."
                     className="w-full resize-none rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
@@ -428,7 +456,7 @@ const CreateResume = () => {
 
                 <button
                   type="button"
-                  onSubmit={addProjects}
+                  onClick={addProjects}
                   className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium hover:bg-indigo-500"
                 >
                   + Add Project
@@ -441,7 +469,10 @@ const CreateResume = () => {
                     type="text"
                     name="name"
                     value={projects.name}
-                    onChange={(e)=> setProjects(e.target.value)}
+                    onChange={(e)=> setProjects({
+                      ...projects,
+                      [e.target.name]:e.target.value
+                    })}
                     placeholder="Project Name"
                     className="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
@@ -450,7 +481,10 @@ const CreateResume = () => {
                     type="text"
                     name="proLink"
                     value={projects.proLink}
-                    onChange={(e)=> setProjects(e.target.value)}
+                    onChange={(e)=> setProjects({
+                      ...projects,
+                      [e.target.name]:e.target.value
+                    })}
                     placeholder="Project Link"
                     className="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
@@ -458,7 +492,10 @@ const CreateResume = () => {
                   <textarea
                     rows="4"
                     value={projects.description}
-                    onChange={(e)=> setProjects(e.target.value)}
+                    onChange={(e)=> setProjects({
+                      ...projects,
+                      [e.target.name]:e.target.value
+                    })}
                     placeholder="Describe your project..."
                     className="w-full resize-none rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
@@ -477,7 +514,7 @@ const CreateResume = () => {
 
               <button
                 type="button"
-                onSubmit={handleSubmit}
+                onClick={handleSubmit}
                 className="flex-1 rounded-lg bg-indigo-600 px-5 py-3 font-semibold text-white transition hover:bg-indigo-500"
               >
                 Create Resume
@@ -503,7 +540,7 @@ const CreateResume = () => {
 
                 <p className="mt-2 text-sm text-slate-600">
                   {/* email@example.com • +91 9876543210 */}
-                  {resume.name}
+                  {resume.fullName}
                 </p>
 
                 <p className="mt-1 text-sm text-slate-600">

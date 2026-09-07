@@ -33,13 +33,22 @@ const Navbar = ({isLoggedIn,setIsLoggedIn}) => {
       </Link>
       </>
       ):(
+        <>
+        <Link
+        to="/create"
+        className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500"
+      >
+        Create-Resume
+      </Link>
+
       <button
         type="submit"
         onClick={handleLogout}
         className="rounded-lg bg-red-400 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-800"
       >
         Log-out
-      </button>) }
+      </button>
+      </>) }
         </div>
       </div>
     </nav>
