@@ -70,7 +70,6 @@ const resumeSchema = new mongoose.Schema({
       {
         name: String,
         description: String,
-        technologies: [String],
         link: String,
       },
     ],

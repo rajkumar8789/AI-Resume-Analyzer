@@ -22,7 +22,7 @@ const CreateResume = () => {
     endYear: "",
   });
 
-  const [skills, setSkills] = useState("");
+  const [skill, setSkill] = useState("");
 
   const [experience, setExperience] = useState({
     company: "",
@@ -40,11 +40,11 @@ const CreateResume = () => {
   });
 
   const addSkills = () => {
-    if (!skills.trim()) return;
+    if (!skill.trim()) return;
     setResume({
       ...resume,
-      //anything can be written instead of skills
-      skills: [...resume.skills, skills.trim()],
+      // 1st Skills -> From Schema , 2nd Skills -> from useState
+      skills: [...resume.skills, skill.trim()],
     });
     setSkills("");
   };
@@ -100,8 +100,26 @@ const CreateResume = () => {
     setResume({
       ...resume,
       [e.target.name]: e.target.value,
-    });
+    })
   };
+
+
+  const handleSubmit =async()=>{
+    try {
+      
+      const responce = await fetch("http://localhost:5000/api/resume/create",
+        {
+          method:POST,
+          headers:{
+            "Content-Type":"application/json"
+          }
+        }
+      )
+
+    } catch (error) {
+      
+    }
+  }
 
   return (
     <div className="min-h-screen bg-slate-950 text-white px-4 py-10">
@@ -129,6 +147,8 @@ const CreateResume = () => {
 
                 <input
                   type="text"
+                  value={resume.name}
+                  onChange={handleChange}
                   placeholder="Enter your full name"
                   className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-indigo-500"
                 />
@@ -142,6 +162,8 @@ const CreateResume = () => {
 
                 <input
                   type="email"
+                  value={resume.email}
+                  onChange={handleChange}
                   placeholder="example@gmail.com"
                   className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-indigo-500"
                 />
@@ -155,6 +177,8 @@ const CreateResume = () => {
 
                 <input
                   type="text"
+                  value={resume.phone}
+                  onChange={handleChange}
                   placeholder="+91 9876543210"
                   className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-indigo-500"
                 />
@@ -168,6 +192,8 @@ const CreateResume = () => {
 
                 <input
                   type="text"
+                  value={resume.location}
+                  onChange={handleChange}
                   placeholder="City, State"
                   className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-indigo-500"
                 />
@@ -181,6 +207,8 @@ const CreateResume = () => {
 
                 <input
                   type="text"
+                  value={resume.linkedIn}
+                  onChange={handleChange}
                   placeholder="https://linkedin.com/in/yourname"
                   className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-indigo-500"
                 />
@@ -194,6 +222,8 @@ const CreateResume = () => {
 
                 <input
                   type="text"
+                  value={resume.github}
+                  onChange={handleChange}
                   placeholder="https://github.com/yourname"
                   className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-indigo-500"
                 />
@@ -207,6 +237,8 @@ const CreateResume = () => {
 
                 <textarea
                   rows="5"
+                  value={resume.summary}
+                  onChange={handleChange}
                   placeholder="Write a short professional summary..."
                   className="w-full resize-none rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition focus:border-indigo-500"
                 />
@@ -220,12 +252,21 @@ const CreateResume = () => {
               <div className="flex gap-3">
                 <input
                   type="text"
+                  value={skill}
+                  onChange={(e)=>setSkill(e.target.value)}
+                  // onKeyDown={(e)=>{
+                  //   if (e.key === 'Enter') {
+                  //     e.preventDefault();
+                  //     addSkills()
+                  //   }
+                  // }}
                   placeholder="e.g. React"
                   className="flex-1 rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-indigo-500"
                 />
 
                 <button
                   type="button"
+                  onSubmit={addSkills}
                   className="rounded-lg bg-indigo-600 px-5 py-3 font-semibold transition hover:bg-indigo-500"
                 >
                   Add
@@ -255,6 +296,7 @@ const CreateResume = () => {
 
                 <button
                   type="button"
+                  onSubmit={addEducation}
                   className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium hover:bg-indigo-500"
                 >
                   + Add Education
@@ -265,24 +307,32 @@ const CreateResume = () => {
                 <div className="grid gap-4 sm:grid-cols-2">
                   <input
                     type="text"
+                    value={education.degree}
+                    onChange={(e)=> setEducation(e.target.value)}
                     placeholder="Degree"
                     className="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
 
                   <input
                     type="text"
+                    value={education.college}
+                    onChange={(e)=> setEducation(e.target.value)}
                     placeholder="College / University"
                     className="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
 
                   <input
                     type="text"
+                    value={education.startYear}
+                    onChange={(e)=> setEducation(e.target.value)}
                     placeholder="Start Year"
                     className="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
 
                   <input
                     type="text"
+                    value={education.endYear}
+                    onChange={(e)=> setEducation(e.target.value)}
                     placeholder="End Year"
                     className="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
@@ -297,6 +347,7 @@ const CreateResume = () => {
 
                 <button
                   type="button"
+                  onSubmit={addExperience}
                   className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium hover:bg-indigo-500"
                 >
                   + Add Experience
@@ -307,12 +358,16 @@ const CreateResume = () => {
                 <div className="space-y-4">
                   <input
                     type="text"
+                    value={experience.company}
+                    onChange={(e)=> setExperience(e.target.value)}
                     placeholder="Company Name"
                     className="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
 
                   <input
                     type="text"
+                    value={experience.position}
+                    onChange={(e)=> setExperience(e.target.value)}
                     placeholder="Job Position"
                     className="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
@@ -320,12 +375,16 @@ const CreateResume = () => {
                   <div className="grid gap-4 sm:grid-cols-2">
                     <input
                       type="text"
+                      value={experience.startDate}
+                      onChange={(e)=> setExperience(e.target.value)}
                       placeholder="Start Date"
                       className="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                     />
 
                     <input
                       type="text"
+                      value={experience.endDate}
+                      onChange={(e)=> setExperience(e.target.value)}
                       placeholder="End Date"
                       className="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                     />
@@ -333,6 +392,8 @@ const CreateResume = () => {
 
                   <textarea
                     rows="4"
+                    value={experience.description}
+                    onChange={(e)=> setExperience(e.target.value)}
                     placeholder="Describe your responsibilities and achievements..."
                     className="w-full resize-none rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
@@ -347,6 +408,7 @@ const CreateResume = () => {
 
                 <button
                   type="button"
+                  onSubmit={addProjects}
                   className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium hover:bg-indigo-500"
                 >
                   + Add Project
@@ -357,18 +419,24 @@ const CreateResume = () => {
                 <div className="space-y-4">
                   <input
                     type="text"
+                    value={projects.name}
+                    onChange={(e)=> setProjects(e.target.value)}
                     placeholder="Project Name"
                     className="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
 
                   <input
                     type="text"
+                    value={projects.link}
+                    onChange={(e)=> setProjects(e.target.value)}
                     placeholder="Project Link"
                     className="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
 
                   <textarea
                     rows="4"
+                    value={projects.description}
+                    onChange={(e)=> setProjects(e.target.value)}
                     placeholder="Describe your project..."
                     className="w-full resize-none rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                   />
@@ -387,6 +455,7 @@ const CreateResume = () => {
 
               <button
                 type="button"
+                onSubmit={handleSubmit}
                 className="flex-1 rounded-lg bg-indigo-600 px-5 py-3 font-semibold text-white transition hover:bg-indigo-500"
               >
                 Create Resume
@@ -411,11 +480,12 @@ const CreateResume = () => {
                 <h1 className="text-3xl font-bold">Your Name</h1>
 
                 <p className="mt-2 text-sm text-slate-600">
-                  email@example.com • +91 9876543210
+                  {/* email@example.com • +91 9876543210 */}
+                  {resume.name}
                 </p>
 
                 <p className="mt-1 text-sm text-slate-600">
-                  LinkedIn • GitHub • City, India
+                  {resume.linkedIn}•{resume.github} • {resume.location}, India
                 </p>
               </div>
 
@@ -426,14 +496,14 @@ const CreateResume = () => {
                 </h3>
 
                 <p className="mt-3 text-sm leading-6 text-slate-600">
-                  Your professional summary will appear here.
+                  {resume.summary}
                 </p>
               </section>
 
               {/* Skills */}
               <section className="mt-6">
                 <h3 className="border-b border-slate-200 pb-1 text-sm font-bold uppercase tracking-wider">
-                  Skills
+                  {skill}
                 </h3>
 
                 <div className="mt-3 flex flex-wrap gap-2">
@@ -460,18 +530,18 @@ const CreateResume = () => {
                 <div className="mt-3">
                   <div className="flex justify-between">
                     <div>
-                      <h4 className="font-semibold">Job Position</h4>
+                      <h4 className="font-semibold">{experience.position}</h4>
 
-                      <p className="text-sm text-slate-600">Company Name</p>
+                      <p className="text-sm text-slate-600">{experience.company}e</p>
                     </div>
 
                     <span className="text-xs text-slate-500">
-                      2024 - Present
+                      {experience.startDate} - {experience.endDate}
                     </span>
                   </div>
 
                   <p className="mt-2 text-sm leading-6 text-slate-600">
-                    Your work experience description will appear here.
+                    {experience.description}
                   </p>
                 </div>
               </section>
@@ -484,14 +554,14 @@ const CreateResume = () => {
 
                 <div className="mt-3 flex justify-between">
                   <div>
-                    <h4 className="font-semibold">Bachelor of Technology</h4>
+                    <h4 className="font-semibold">{education.degree}</h4>
 
                     <p className="text-sm text-slate-600">
-                      University / College
+                      {education.college}
                     </p>
                   </div>
 
-                  <span className="text-xs text-slate-500">2022 - 2026</span>
+                  <span className="text-xs text-slate-500">{education.startYear} - {education.endYear}</span>
                 </div>
               </section>
 
@@ -502,10 +572,10 @@ const CreateResume = () => {
                 </h3>
 
                 <div className="mt-3">
-                  <h4 className="font-semibold">AI Resume Analyzer</h4>
+                  <h4 className="font-semibold">{projects.name}</h4>
 
                   <p className="mt-1 text-sm text-slate-600">
-                    Your project description will appear here.
+                    {projects.description}
                   </p>
                 </div>
               </section>
