@@ -36,7 +36,7 @@ const CreateResume = () => {
     name: "",
     description: "",
     technologies: "",
-    link: "",
+    proLink: "",
   });
 
   const addSkills = () => {
@@ -75,7 +75,7 @@ const CreateResume = () => {
       name: "",
       description: "",
       technologies: "",
-      link: "",
+      proLink: "",
     });
   };
 
@@ -448,8 +448,8 @@ const CreateResume = () => {
 
                   <input
                     type="text"
-                    name="link"
-                    value={projects.link}
+                    name="proLink"
+                    value={projects.proLink}
                     onChange={(e)=> setProjects(e.target.value)}
                     placeholder="Project Link"
                     className="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
