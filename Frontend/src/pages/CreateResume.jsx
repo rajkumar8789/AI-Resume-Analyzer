@@ -266,12 +266,12 @@ const CreateResume = () => {
                   type="text"
                   value={skill}
                   onChange={(e)=>setSkill(e.target.value)}
-                  // onKeyDown={(e)=>{
-                  //   if (e.key === 'Enter') {
-                  //     e.preventDefault();
-                  //     addSkills()
-                  //   }
-                  // }}
+                  onKeyDown={(e)=>{
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      addSkills()
+                    }
+                  }}
                   placeholder="e.g. React"
                   className="flex-1 rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none focus:border-indigo-500"
                 />
@@ -536,11 +536,11 @@ const CreateResume = () => {
             <div className="min-h-[800px] rounded-2xl bg-white p-8 text-slate-900 shadow-2xl">
               {/* Resume Header */}
               <div className="border-b border-slate-300 pb-5">
-                <h1 className="text-3xl font-bold">Your Name</h1>
+                <h1 className="text-3xl font-bold">{resume.fullName}</h1>
 
                 <p className="mt-2 text-sm text-slate-600">
                   {/* email@example.com • +91 9876543210 */}
-                  {resume.fullName}
+                  {resume.email}
                 </p>
 
                 <p className="mt-1 text-sm text-slate-600">
@@ -562,21 +562,24 @@ const CreateResume = () => {
               {/* Skills */}
               <section className="mt-6">
                 <h3 className="border-b border-slate-200 pb-1 text-sm font-bold uppercase tracking-wider">
-                  {skill}
+                  Skills
                 </h3>
 
                 <div className="mt-3 flex flex-wrap gap-2">
-                  <span className="rounded bg-slate-100 px-2 py-1 text-xs">
-                    React
+                  {resume.skills.map((skill,index)=>(
+                    <span className="rounded bg-slate-100 px-2 py-1 text-xs" key={index}>
+                    {skill}
                   </span>
-
+                  ))}
+                  
+{/* 
                   <span className="rounded bg-slate-100 px-2 py-1 text-xs">
                     Node.js
                   </span>
 
                   <span className="rounded bg-slate-100 px-2 py-1 text-xs">
                     MongoDB
-                  </span>
+                  </span> */}
                 </div>
               </section>
 
