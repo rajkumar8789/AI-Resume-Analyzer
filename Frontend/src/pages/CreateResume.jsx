@@ -492,6 +492,7 @@ const CreateResume = () => {
                   <textarea
                     rows="4"
                     value={projects.description}
+                    name="description"
                     onChange={(e)=> setProjects({
                       ...projects,
                       [e.target.name]:e.target.value
@@ -572,14 +573,6 @@ const CreateResume = () => {
                   </span>
                   ))}
                   
-{/* 
-                  <span className="rounded bg-slate-100 px-2 py-1 text-xs">
-                    Node.js
-                  </span>
-
-                  <span className="rounded bg-slate-100 px-2 py-1 text-xs">
-                    MongoDB
-                  </span> */}
                 </div>
               </section>
 
@@ -588,24 +581,31 @@ const CreateResume = () => {
                 <h3 className="border-b border-slate-200 pb-1 text-sm font-bold uppercase tracking-wider">
                   Experience
                 </h3>
-
+                  
                 <div className="mt-3">
-                  <div className="flex justify-between">
+                  {resume.experience.map((exp, index)=>(
+                    <div key={index}>
+                    <div className="flex justify-between">
+                    
                     <div>
-                      <h4 className="font-semibold">{experience.position}</h4>
+                      <h4 className="font-semibold" key={index}>{exp.position}</h4>
 
-                      <p className="text-sm text-slate-600">{experience.company}</p>
+                      <p className="text-sm text-slate-600">{exp.company}</p>
                     </div>
 
-                    <span className="text-xs text-slate-500">
-                      {experience.startDate} - {experience.endDate}
+                    <span className="text-xs text-slate-500" key={index}>
+                      {exp.startDate} - {exp.endDate}
                     </span>
                   </div>
 
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
-                    {experience.description}
+                  <p className="mt-2 text-sm leading-6 text-slate-600" key={index}>
+                    {exp.description}
                   </p>
-                </div>
+                  </div>
+                
+                
+                  ))}
+                  </div>
               </section>
 
               {/* Education */}
@@ -615,15 +615,19 @@ const CreateResume = () => {
                 </h3>
 
                 <div className="mt-3 flex justify-between">
+                  {resume.education.map((edu, index)=>(
+                    <div key={index}>
                   <div>
-                    <h4 className="font-semibold">{education.degree}</h4>
+                    <h4 className="font-semibold">{edu.degree}</h4>
 
                     <p className="text-sm text-slate-600">
-                      {education.college}
+                      {edu.college}
                     </p>
                   </div>
 
-                  <span className="text-xs text-slate-500">{education.startYear} - {education.endYear}</span>
+                  <span className="text-xs text-slate-500">{edu.startYear} - {edu.endYear}</span>
+                  </div>
+                  ))}
                 </div>
               </section>
 
@@ -634,11 +638,18 @@ const CreateResume = () => {
                 </h3>
 
                 <div className="mt-3">
-                  <h4 className="font-semibold">{projects.name}</h4>
+                  {resume.projects.map((proj,index)=>(
+                    <div key={index}>
+                  <h4 className="font-semibold">{proj.name}</h4>
 
                   <p className="mt-1 text-sm text-slate-600">
-                    {projects.description}
+                    {proj.proLink}
                   </p>
+                  <p className="mt-1 text-sm text-slate-600">
+                    {proj.description}
+                  </p>
+                    </div>
+                  ))}
                 </div>
               </section>
             </div>
