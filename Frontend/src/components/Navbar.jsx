@@ -35,6 +35,12 @@ const Navbar = ({isLoggedIn,setIsLoggedIn}) => {
       ):(
         <>
         <Link
+        to="/analyze-resume"
+        className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500"
+      >
+       Analyze-Resume
+      </Link>
+        <Link
         to="/create"
         className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500"
       >

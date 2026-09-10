@@ -2,31 +2,37 @@ import Resume from "../models/resumeSchema.js";
 
 const createResume = async (req, res) => {
   try {
-    const {
-      fullName,
-      email,
-      phone,
-      location,
-      summary,
-      education,
-      skills,
-      exprience,
-      projects,
-    } = req.body;
+    // const {
+    //   fullName,
+    //   email,
+    //   phone,
+    //   location,
+    //   summary,
+    //   education,
+    //   skills,
+    //   exprience,
+    //   projects,
+    // } = req.body;
+
+    const resumeData = JSON.parse(req.body.resume);
 
     const resume = await Resume.create({
       user: req.user.userId,
-      fullName,
-      email,
-      phone,
-      location,
-      summary,
-      education,
-      skills,
-      exprience,
-      projects,
-    });
+     
+      // fullName,
+      // email,
+      // phone,
+      // location,
+      // summary,
+      // education,
+      // skills,
+      // exprience,
+      // projects,
 
+      ...resumeData,
+      
+       profilePic:req.file?.path ||"",
+    });
     res.status(201).json({
       message: "Resume created successfully",
       resume,

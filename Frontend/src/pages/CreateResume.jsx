@@ -102,19 +102,26 @@ const CreateResume = () => {
       [e.target.name]: e.target.value,
     });
   };
-
+  // for hiding experience fro fresher
   const [isFresher, setIsfresher] = useState(true);
+
+  //for image
+  const [profilePic, setProfilepic] = useState(null);
 
   const handleSubmit = async () => {
     try {
       const token = localStorage.getItem("token");
+
+      const formData = new FormData();
+      formData.append("profilePic", profilePic);
+      formData.append("resume", JSON.stringify(resume));
+
       const responce = await fetch("http://localhost:5000/api/resume/create", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `bearer ${token}`,
         },
-        body: JSON.stringify(resume),
+        body: formData,
       });
       const data = await responce.json();
       console.log(data);
@@ -141,6 +148,17 @@ const CreateResume = () => {
             <h2 className="mb-6 text-xl font-semibold">Personal Information</h2>
 
             <div className="space-y-5">
+              <div>
+                <label className="mb-2 block text-sm font-medium text-slate-300">
+                  Profile Photo
+                </label>
+                <input
+                  type="file"
+                  accept="images/"
+                  onChange={(e) => setProfilepic(e.target.files[0])}
+                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-sm text-slate-300 file:mr-4 file:rounded-lg file:border-0 file:bg-indigo-600 file:px-4 file:py-2 file:text-white hover:file:bg-indigo-500"
+                />
+              </div>
               {/* Name */}
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-300">
@@ -378,18 +396,19 @@ const CreateResume = () => {
               <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-xl font-semibold">Experience</h2>
 
-               {!isFresher && ( <button
-                  type="button"
-                  onClick={addExperience}
-                  className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium hover:bg-indigo-500"
-                >
-                  + Add Experience
-                </button>)}
+                {!isFresher && (
+                  <button
+                    type="button"
+                    onClick={addExperience}
+                    className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium hover:bg-indigo-500"
+                  >
+                    + Add Experience
+                  </button>
+                )}
               </div>
 
               <div className="mb-6">
                 <div>
-                  
                   <label className="mb-3 block text-sm font-medium text-slate-300">
                     Are you Fresher?
                   </label>
@@ -414,81 +433,83 @@ const CreateResume = () => {
                 </label>
               </div>
 
-              {!isFresher && (<div className="rounded-xl border border-slate-800 bg-slate-950 p-4">
-                <div className="space-y-4">
-                  <input
-                    type="text"
-                    name="company"
-                    value={experience.company}
-                    onChange={(e) =>
-                      setExperience({
-                        ...experience,
-                        [e.target.name]: e.target.value,
-                      })
-                    }
-                    placeholder="Company Name"
-                    className="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
-                  />
-
-                  <input
-                    type="text"
-                    name="position"
-                    value={experience.position}
-                    onChange={(e) =>
-                      setExperience({
-                        ...experience,
-                        [e.target.name]: e.target.value,
-                      })
-                    }
-                    placeholder="Job Position"
-                    className="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
-                  />
-
-                  <div className="grid gap-4 sm:grid-cols-2">
+              {!isFresher && (
+                <div className="rounded-xl border border-slate-800 bg-slate-950 p-4">
+                  <div className="space-y-4">
                     <input
                       type="text"
-                      name="startDate"
-                      value={experience.startDate}
+                      name="company"
+                      value={experience.company}
                       onChange={(e) =>
                         setExperience({
                           ...experience,
                           [e.target.name]: e.target.value,
                         })
                       }
-                      placeholder="Start Date"
-                      className="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
+                      placeholder="Company Name"
+                      className="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                     />
 
                     <input
                       type="text"
-                      name="endDate"
-                      value={experience.endDate}
+                      name="position"
+                      value={experience.position}
                       onChange={(e) =>
                         setExperience({
                           ...experience,
                           [e.target.name]: e.target.value,
                         })
                       }
-                      placeholder="End Date"
-                      className="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
+                      placeholder="Job Position"
+                      className="w-full rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
+                    />
+
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <input
+                        type="text"
+                        name="startDate"
+                        value={experience.startDate}
+                        onChange={(e) =>
+                          setExperience({
+                            ...experience,
+                            [e.target.name]: e.target.value,
+                          })
+                        }
+                        placeholder="Start Date"
+                        className="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
+                      />
+
+                      <input
+                        type="text"
+                        name="endDate"
+                        value={experience.endDate}
+                        onChange={(e) =>
+                          setExperience({
+                            ...experience,
+                            [e.target.name]: e.target.value,
+                          })
+                        }
+                        placeholder="End Date"
+                        className="rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
+                      />
+                    </div>
+
+                    <textarea
+                      rows="4"
+                      name="description"
+                      value={experience.description}
+                      onChange={(e) =>
+                        setExperience({
+                          ...experience,
+                          [e.target.name]: e.target.value,
+                        })
+                      }
+                      placeholder="Describe your responsibilities and achievements..."
+                      className="w-full resize-none rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
                     />
                   </div>
-
-                  <textarea
-                    rows="4"
-                    name="description"
-                    value={experience.description}
-                    onChange={(e) =>
-                      setExperience({
-                        ...experience,
-                        [e.target.name]: e.target.value,
-                      })
-                    }
-                    placeholder="Describe your responsibilities and achievements..."
-                    className="w-full resize-none rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 outline-none focus:border-indigo-500"
-                  />
                 </div>
-              </div>)}
+              )}
             </div>
 
             {/* Projects */}
@@ -554,8 +575,6 @@ const CreateResume = () => {
 
             {/* Buttons */}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              
-
               <button
                 type="button"
                 onClick={handleSubmit}
@@ -580,13 +599,39 @@ const CreateResume = () => {
             <div className="min-h-[800px] rounded-2xl bg-white p-8 text-slate-900 shadow-2xl">
               {/* Resume Header */}
               <div className="border-b border-slate-300 pb-5">
-                <h1 className="text-3xl font-bold">{resume.fullName}</h1>
+                <div className="flex items-center gap-5">
+                  {/* Profile Image */}
+                  <div className="h-24 w-24 overflow-hidden rounded-full border-2 border-slate-300">
+                    {profilePic ? (
+                      <img
+                        src={URL.createObjectURL(profilePic)}
+                        alt="Profile"
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-slate-100 text-xs text-slate-400">
+                        Photo
+                      </div>
+                    )}
+                  </div>
 
-                <p className="mt-2 text-sm text-slate-600">
-                  {/* email@example.com • +91 9876543210 */}
-                  {resume.email}
-                </p>
+                  {/* Basic Information */}
+                  <div>
+                    <h1 className="text-3xl font-bold">
+                      {resume.fullName || "Your Name"}
+                    </h1>
 
+                    <p className="mt-2 text-sm text-slate-600">
+                      {resume.email || "email@example.com"}
+                    </p>
+
+                    <p className="mt-1 text-sm text-slate-600">
+                      {resume.phone || "+91 9876543210"}
+                      {" • "}
+                      {resume.location || "City, India"}
+                    </p>
+                  </div>
+                </div>
                 <p className="mt-1 text-sm text-slate-600">
                   {resume.linkedIn}•{resume.github} • {resume.location}, India
                 </p>
@@ -622,40 +667,37 @@ const CreateResume = () => {
               </section>
 
               {/* Experience */}
-              { !isFresher &&(<section className="mt-6">
-                <h3 className="border-b border-slate-200 pb-1 text-sm font-bold uppercase tracking-wider">
-                  Experience
-                </h3>
+              {!isFresher && (
+                <section className="mt-6">
+                  <h3 className="border-b border-slate-200 pb-1 text-sm font-bold uppercase tracking-wider">
+                    Experience
+                  </h3>
 
-                <div className="mt-3">
-                  {resume.experience.map((exp, index) => (
-                    <div key={index}>
-                      <div className="flex justify-between">
-                        <div>
-                          <h4 className="font-semibold">
-                            {exp.position}
-                          </h4>
+                  <div className="mt-3">
+                    {resume.experience.map((exp, index) => (
+                      <div key={index}>
+                        <div className="flex justify-between">
+                          <div>
+                            <h4 className="font-semibold">{exp.position}</h4>
 
-                          <p className="text-sm text-slate-600">
-                            {exp.company}
-                          </p>
+                            <p className="text-sm text-slate-600">
+                              {exp.company}
+                            </p>
+                          </div>
+
+                          <span className="text-xs text-slate-500">
+                            {exp.startDate} - {exp.endDate}
+                          </span>
                         </div>
 
-                        <span className="text-xs text-slate-500" >
-                          {exp.startDate} - {exp.endDate}
-                        </span>
+                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                          {exp.description}
+                        </p>
                       </div>
-
-                      <p
-                        className="mt-2 text-sm leading-6 text-slate-600"
-                        
-                      >
-                        {exp.description}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </section>)}
+                    ))}
+                  </div>
+                </section>
+              )}
 
               {/* Education */}
               <section className="mt-6">

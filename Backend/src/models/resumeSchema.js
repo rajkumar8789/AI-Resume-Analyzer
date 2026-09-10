@@ -1,82 +1,88 @@
 import mongoose from "mongoose";
 import User from "./userSchema.js";
-const resumeSchema = new mongoose.Schema({
-  user:{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:'User',
-    required:true
-  },
-  
-  fullName: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
-  phone: {
-    type: Number,
-  },
-  location: {
-    type: String,
-  },
-  linkedIn:{
-    type: String,
-  },
-  github:{
-    type: String,
-  },
-  //professionalSummary
-  summary: {
-    type: String,
-  },
+const resumeSchema = new mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    profilePic: {
+      type: String,
+      required: true
+    },
+    fullName: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: Number,
+    },
+    location: {
+      type: String,
+    },
+    linkedIn: {
+      type: String,
+    },
+    github: {
+      type: String,
+    },
+    //professionalSummary
+    summary: {
+      type: String,
+    },
 
-  //Education
-  education: {
-    type: [
-      {
-        degree: {
-          type: String,
+    //Education
+    education: {
+      type: [
+        {
+          degree: {
+            type: String,
+          },
+          college: {
+            type: String,
+          },
+          startYear: {
+            type: String,
+          },
+          endYear: {
+            type: String,
+          },
         },
-        college: {
-          type: String,
+      ],
+    },
+    skills: {
+      type: [String],
+    },
+    experience: {
+      type: [
+        {
+          company: String,
+          position: String,
+          startDate: String,
+          endDate: String,
+          description: String,
         },
-        startYear: {
-          type: String,
+      ],
+    },
+    projects: {
+      type: [
+        {
+          name: String,
+          description: String,
+          proLink: String,
         },
-        endYear: {
-          type: String,
-        },
-      },
-    ],
+      ],
+    },
   },
-  skills: {
-    type: [String],
+  {
+    timestamps: true,
   },
-  experience: {
-    type: [
-      {
-        company: String,
-        position: String,
-        startDate: String,
-        endDate: String,
-        description: String,
-      },
-    ],
-  },
-  projects: {
-    type: [
-      {
-        name: String,
-        description: String,
-        proLink: String,
-      },
-    ],
-  },
-},{
-  timestamps:true
-});
+);
 
 const Resume = mongoose.model("Analysis", resumeSchema);
 
