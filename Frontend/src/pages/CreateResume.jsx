@@ -115,7 +115,7 @@ const CreateResume = () => {
       //handing multipart data
       const formData = new FormData();
       formData.append("profilePic", profilePic);
-      formData.append("resume", JSON.stringify(resume));
+      formData.append("resume", JSON.stringify(resume)); // stringify -> object to String , parse -> string to Object
 
       const responce = await fetch("http://localhost:5000/api/resume/create", {
         method: "POST",
