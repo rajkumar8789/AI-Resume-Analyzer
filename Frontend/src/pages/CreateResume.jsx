@@ -112,6 +112,7 @@ const CreateResume = () => {
     try {
       const token = localStorage.getItem("token");
 
+      //handing multipart data
       const formData = new FormData();
       formData.append("profilePic", profilePic);
       formData.append("resume", JSON.stringify(resume));
@@ -602,9 +603,10 @@ const CreateResume = () => {
                 <div className="flex items-center gap-5">
                   {/* Profile Image */}
                   <div className="h-24 w-24 overflow-hidden rounded-full border-2 border-slate-300">
+                   
                     {profilePic ? (
                       <img
-                        src={URL.createObjectURL(profilePic)}
+                        src={URL.createObjectURL(profilePic)} // helps to show preview of image
                         alt="Profile"
                         className="h-full w-full object-cover"
                       />
