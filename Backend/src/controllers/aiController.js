@@ -3,12 +3,14 @@ import {
   generateAiResponceOnResume,
 } from "../services/aiServices.js";
 
+//testing controller
 const testAI = async (req, res) => {
   const { message } = req.body;
   const generatedText = await generateAiResponce(message);
   res.json(generatedText);
 };
 
+//working controller
 const resumeUpload = async (req, res) => {
   try {
     //  const {resume} = req.file.path

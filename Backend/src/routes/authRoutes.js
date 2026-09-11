@@ -1,6 +1,5 @@
 import express from "express"
 import {userRegister,userLogin} from "../controllers/userController.js"
-import upload from "../middleware/multer.js"
 
 
 const router = express.Router()

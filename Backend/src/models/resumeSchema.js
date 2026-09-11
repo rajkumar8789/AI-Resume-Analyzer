@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import User from "./userSchema.js";
 const resumeSchema = new mongoose.Schema(
   {
     user: {
