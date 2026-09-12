@@ -763,7 +763,7 @@ const CreateResume = () => {
                   onClick={downloadResume}
                   className="rounded-lg bg-indigo-600 px-5 py-3 font-semibold text-white"
                 >
-                  Download PDF
+                  Save as PDF
                 </button>
             </div>
             
