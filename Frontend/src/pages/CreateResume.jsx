@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import jspdf, { jsPDF } from "jspdf";
 
 const CreateResume = () => {
   const [resume, setResume] = useState({
@@ -107,6 +108,13 @@ const CreateResume = () => {
 
   //for image
   const [profilePic, setProfilepic] = useState(null);
+
+  const downloadResume = () => {
+    const element = document.getElementById("resume-preview");
+    const doc = new jsPDF();
+    doc.text(resume.fullName, 20, 20);
+    doc.save();
+  };
 
   const handleSubmit = async () => {
     try {
@@ -597,13 +605,15 @@ const CreateResume = () => {
               </span>
             </div>
 
-            <div className="min-h-[800px] rounded-2xl bg-white p-8 text-slate-900 shadow-2xl">
+            <div
+              id="resume-preview"
+              className="min-h-[800px] rounded-2xl bg-white p-8 text-slate-900 shadow-2xl"
+            >
               {/* Resume Header */}
               <div className="border-b border-slate-300 pb-5">
                 <div className="flex items-center gap-5">
                   {/* Profile Image */}
                   <div className="h-24 w-24 overflow-hidden rounded-full border-2 border-slate-300">
-                   
                     {profilePic ? (
                       <img
                         src={URL.createObjectURL(profilePic)} // helps to show preview of image
@@ -744,6 +754,14 @@ const CreateResume = () => {
                     </div>
                   ))}
                 </div>
+
+                <button
+                  type="button"
+                  onClick={downloadResume}
+                  className="rounded-lg bg-indigo-600 px-5 py-3 font-semibold text-white"
+                >
+                  Download PDF
+                </button>
               </section>
             </div>
           </div>
