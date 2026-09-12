@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import jspdf, { jsPDF } from "jspdf";
+// import jspdf, { jsPDF } from "jspdf";
+import html2pdf from 'html2pdf.js'
 
 const CreateResume = () => {
   const [resume, setResume] = useState({
@@ -111,9 +112,25 @@ const CreateResume = () => {
 
   const downloadResume = () => {
     const element = document.getElementById("resume-preview");
-    const doc = new jsPDF();
-    doc.text(resume.fullName, 20, 20);
-    doc.save();
+
+    const options = {
+      margin: 0,
+      filename: `${resume.fullName || "resume"}.pdf`,
+      image: {
+        type: "jpeg",
+        quality: 0.98,
+      },
+      html2canvas: {
+        scale: 2,
+      },
+      jsPDF: {
+        unit: "mm",
+        format: "a4",
+        orientation: "portrait",
+      },
+    };
+
+    html2pdf().set(options).from(element).save();
   };
 
   const handleSubmit = async () => {
@@ -645,7 +662,7 @@ const CreateResume = () => {
                   </div>
                 </div>
                 <p className="mt-1 text-sm text-slate-600">
-                  {resume.linkedIn}•{resume.github} • {resume.location}, India
+                  {resume.github}
                 </p>
               </div>
 
@@ -753,20 +770,16 @@ const CreateResume = () => {
                       </p>
                     </div>
                   ))}
-                  
                 </div>
-
-                
               </section>
               <button
-                  type="button"
-                  onClick={downloadResume}
-                  className="rounded-lg bg-indigo-600 px-5 py-3 font-semibold text-white"
-                >
-                  Save as PDF
-                </button>
+                type="button"
+                onClick={downloadResume}
+                className="rounded-lg bg-indigo-600 px-5 py-3 font-semibold text-white"
+              >
+                Save as PDF
+              </button>
             </div>
-            
           </div>
         </div>
       </div>
